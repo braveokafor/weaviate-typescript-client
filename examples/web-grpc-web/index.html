@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weaviate gRPC-Web browser demo</title>
+</head>
+
+<body>
+  <main>
+    <h1>Weaviate gRPC-Web browser demo</h1>
+    <p>Lists records from a Weaviate collection via gRPC-Web.</p>
+
+    <form id="form">
+      <label>Host
+        <input id="host" type="text" value="localhost" required>
+      </label>
+      <label>HTTP port
+        <input id="httpPort" type="number" value="8080" min="1" max="65535" required>
+      </label>
+      <label>gRPC-Web port
+        <input id="grpcPort" type="number" value="50052" min="1" max="65535" required>
+      </label>
+      <label>Collection
+        <input id="collection" type="text" value="Movies" required>
+      </label>
+      <label>Limit
+        <input id="limit" type="number" value="10" min="1" max="1000" required>
+      </label>
+      <label>API key
+        <input id="apikey" type="text" placeholder="e.g. jp-secret-key">
+      </label>
+      <button type="submit">List records</button>
+    </form>
+
+    <h2>Response</h2>
+    <div id="output">(no request sent yet)</div>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
