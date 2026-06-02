@@ -1,5 +1,5 @@
 import { isAbortError } from 'abort-controller-x';
-import { Agent } from 'http';
+import type { Agent } from 'http';
 
 import OpenidConfigurationGetter from '../misc/openidConfigurationGetter.js';
 

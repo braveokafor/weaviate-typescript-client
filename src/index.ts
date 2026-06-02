@@ -32,8 +32,7 @@ import { Meta } from './openapi/types.js';
 import roles, { Roles, permissions } from './roles/index.js';
 import { DbVersion } from './utils/dbVersion.js';
 
-import { Agent as HttpAgent } from 'http';
-import { Agent as HttpsAgent } from 'https';
+import { createKeepAliveAgent } from '#httpAgent';
 import { LiveChecker, OpenidConfigurationGetter, ReadyChecker } from './misc/index.js';
 
 import weaviateV2 from './v2/index.js';
@@ -215,7 +214,7 @@ async function client(params: ClientParams): Promise<WeaviateClient> {
   if (!params.headers) params.headers = {};
 
   const scheme = httpSecure ? 'https' : 'http';
-  const agent = httpSecure ? new HttpsAgent({ keepAlive: true }) : new HttpAgent({ keepAlive: true });
+  const agent = createKeepAliveAgent(httpSecure);
 
   const { connection, dbVersionProvider, dbVersionSupport } = await ConnectionGRPC.use({
     host: `${scheme}://${httpHost}:${httpPort}${httpPath || ''}`,

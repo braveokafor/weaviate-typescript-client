@@ -14,6 +14,17 @@
         "require": "./dist/node/cjs/index.js",
         "default": "./dist/node/esm/index.js"
       }
+    },
+    "./web-grpc": {
+      "types": "./dist/web-grpc/index.d.ts",
+      "import": "./dist/web-grpc/index.js",
+      "require": "./dist/web-grpc/index.cjs"
+    }
+  },
+  "imports": {
+    "#httpAgent": {
+      "browser": "./src/utils/httpAgent.browser.ts",
+      "default": "./src/utils/httpAgent.node.ts"
     }
   },
   "engines": {
@@ -25,6 +36,7 @@
     "test:coverage": "npm run test -- --coverage",
     "build": "npm run build:node",
     "build:web": "tsup",
+    "build:web-grpc": "node scripts/build-web-grpc.mjs",
     "build:cjs": "tsc --module commonjs --moduleResolution node10 --outDir dist/node/cjs && touch dist/node/cjs/package.json && echo '{\"type\": \"commonjs\"}' > dist/node/cjs/package.json",
     "build:esm": "tsc --outDir dist/node/esm && touch dist/node/esm/package.json && echo '{\"type\": \"module\"}' > dist/node/esm/package.json",
     "build:node": "npm run lint && npm run build:cjs && npm run build:esm && prettier --write --no-error-on-unmatched-pattern '**/dist/**/*.{ts,js}'",
@@ -61,6 +73,7 @@
     "nice-grpc": "^2.1.14",
     "nice-grpc-client-middleware-retry": "^3.1.13",
     "nice-grpc-common": "^2.0.2",
+    "nice-grpc-web": "^3.3.10",
     "uuid": "^14.0.0"
   },
   "devDependencies": {

@@ -16,7 +16,10 @@
     "outDir": "./dist/node",
     "declaration": true,
     "rootDir": "./src",
-    "types": ["node", "uuid"]
+    "types": ["node", "uuid"],
+    "paths": {
+      "#httpAgent": ["./src/utils/httpAgent.node.ts"]
+    }
   },
   "include": ["./src/**/*"],
   "exclude": ["**/*.test.ts"]
